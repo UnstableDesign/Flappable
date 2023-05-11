@@ -1,0 +1,32 @@
+body,
+h2{
+    font-family:monospace;
+}
+
+.cloth{
+    width: 66vw;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.flap{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 12%;
+    background-color: orange;
+}
+
+.em{
+    border: thin dashed white;
+    display: flex;
+    width: 50%;
+    color: white;
+    padding: 2%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.active{
+    background-color: darkorange;
+}
