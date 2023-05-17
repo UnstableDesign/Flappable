@@ -18,6 +18,18 @@ export class ClothcontrolComponent implements OnInit{
 
   }
 
+  allOn() : void {
+    for(let i = 0; i < 16; i++){
+      this.setEMOn(i);
+    }
+  }
+
+  allOff() : void {
+    for(let i = 0; i < 16; i++){
+      this.setEMOff(i);
+    }
+  }
+
   setEMOn(id: number) {
     this.rtdb.activate(id);
   }
@@ -65,6 +77,128 @@ export class ClothcontrolComponent implements OnInit{
   onFUnClick() {
     this.setEMOff(3);
   }
+
+  @HostListener('window:keydown.g', ['$event'])
+  onGClick() {
+    this.setEMOn(4);
+  }
+  
+  @HostListener('window:keyup.g', ['$event'])
+  onGUnClick() {
+    this.setEMOff(4);
+  }
+
+  @HostListener('window:keydown.h', ['$event'])
+  onHClick() {
+    this.setEMOn(5);
+  }
+  
+  @HostListener('window:keyup.h', ['$event'])
+  onHUnClick() {
+    this.setEMOff(5);
+  }
+
+  @HostListener('window:keydown.j', ['$event'])
+  onJClick() {
+    this.setEMOn(6);
+  }
+  
+  @HostListener('window:keyup.j', ['$event'])
+  onJUnClick() {
+    this.setEMOff(6);
+  }
+
+  @HostListener('window:keydown.k', ['$event'])
+  onKClick() {
+    this.setEMOn(7);
+  }
+  
+  @HostListener('window:keyup.k', ['$event'])
+  onKUnClick() {
+    this.setEMOff(7);
+  }
+
+  @HostListener('window:keydown.z', ['$event'])
+  onZClick() {
+    this.setEMOn(8);
+  }
+  
+  @HostListener('window:keyup.z', ['$event'])
+  onZUnClick() {
+    this.setEMOff(8);
+  }
+
+  @HostListener('window:keydown.x', ['$event'])
+  onXClick() {
+    this.setEMOn(9);
+  }
+  
+  @HostListener('window:keyup.x', ['$event'])
+  onXUnClick() {
+    this.setEMOff(9);
+  }
+
+  @HostListener('window:keydown.c', ['$event'])
+  onCClick() {
+    this.setEMOn(10);
+  }
+  
+  @HostListener('window:keyup.c', ['$event'])
+  onCUnClick() {
+    this.setEMOff(10);
+  }
+
+  @HostListener('window:keydown.v', ['$event'])
+  onVClick() {
+    this.setEMOn(11);
+  }
+  
+  @HostListener('window:keyup.v', ['$event'])
+  onVUnClick() {
+    this.setEMOff(11);
+  }
+
+  @HostListener('window:keydown.b', ['$event'])
+  onBClick() {
+    this.setEMOn(12);
+  }
+  
+  @HostListener('window:keyup.b', ['$event'])
+  onBUnClick() {
+    this.setEMOff(12);
+  }
+
+  @HostListener('window:keydown.n', ['$event'])
+  onNClick() {
+    this.setEMOn(13);
+  }
+  
+  @HostListener('window:keyup.n', ['$event'])
+  onNUnClick() {
+    this.setEMOff(13);
+  }
+
+  @HostListener('window:keydown.q', ['$event'])
+  onQClick() {
+    this.setEMOn(14);
+  }
+  
+  @HostListener('window:keyup.q', ['$event'])
+  onQUnClick() {
+    this.setEMOff(14);
+  }
+
+  @HostListener('window:keydown.w', ['$event'])
+  onWClick() {
+    this.setEMOn(15);
+  }
+  
+  @HostListener('window:keyup.w', ['$event'])
+  onWUnClick() {
+    this.setEMOff(15);
+  }
+
+
 
 
 }

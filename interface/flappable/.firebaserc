@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "flappable-rtd": {
+      "hosting": {
+        "flappable": [
+          "flappable-rtd"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "flappable-rtd"
+  }
+}
