@@ -67,14 +67,20 @@ export class RealtimedatabaseService {
 
   activate(id: number) {
     this.user_values[id] = true;
-    let field = this.getCode(id);
-    set(ref(this.db, field+'/'), true);
+    let val = this.convertToInt();
+    set(ref(this.db, 'bits'), val);
   }
 
   deactivate(id: number) {
     this.user_values[id] = false;
-    let field = this.getCode(id);
-    set(ref(this.db, field+'/'), false);
+    let val = this.convertToInt();
+    set(ref(this.db, 'bits'), val);
+  }
+
+  convertToInt() : number{
+    let reversed = this.user_values.slice().reverse();
+    let x = parseInt(reversed.map(i => (i) ? 1 : 0).join(''), 2);
+    return x;
   }
 
 
