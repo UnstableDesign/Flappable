@@ -1,32 +1,92 @@
-body,
-h2{
-    font-family:monospace;
+
+.topbar{
+    display: flex;
+    flex-direction: row;
+    padding: 2vw 1vw 1vw 1vw;
+    justify-content: space-between;
 }
 
+.buttons{
+    font-family:monospace;
+    text-align: center;
+    width: 33%;
+    color: blue;
+    
+    button{
+        padding: 2px;
+ }
+}
+
+.footer{
+    padding: 1vw 4vw;
+    color: blue;
+
+
+}
+
+a,
+a:link,
+a:active,
+a:visited{
+    color: blue;
+    text-decoration: underline;
+}
+
+.title{
+    width: 33%;
+    text-align: left;
+    color: blue;
+
+    .main{
+        font-size: 2em;
+        padding-bottom: 8px;
+    }
+
+    .sub{
+        font-size: 1em;
+    }
+
+}
+
+
+
+.about{
+    width: 33%;
+    text-align: right;
+}
+
+
+
 .cloth{
-    width: 66vw;
-    height: 95vh;
+    width: 98%;
+    height: 80%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1vw;
 }
 
 .flap{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    height: 100%;
     width: 100%;
-    height: 12%;
-    background-color: orange;
+    background-color: white;   
+
 }
 
 .em{
-    border: thin dashed white;
     display: flex;
-    width: 50%;
-    color: white;
+    height: 50%;
+    color: transparent;
     padding: 2%;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    border: thin dashed blue;
+
 }
 
 .active{
-    background-color: darkorange;
+    background-color: blue;
+    border: thin dashed white;
+
 }

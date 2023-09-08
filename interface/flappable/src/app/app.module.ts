@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClothcontrolComponent } from './clothcontrol/clothcontrol.component';
 import { RealtimedatabaseService } from './realtimedatabase.service';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import { RealtimedatabaseService } from './realtimedatabase.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NoopAnimationsModule,
+    MatButtonModule
   ],
   providers: [RealtimedatabaseService],
   bootstrap: [AppComponent]

@@ -46,14 +46,13 @@ FirebaseConfig config;
 
 unsigned long sendDataPrevMillis = 0;
 int count = 0;
-bool signupOK = false;
-
+bool signupOK = false; 
 
 //pins for the first four flaps
 //36 is top left
 int flaps[16] = {13, 12, 14, 27, 26, 25, 33, 32, 21, 22, 19, 23, 18, 5, 15, 2};
-
-const char* db_location[16] = {"f1_a", "f1_b", "f2_a", "f2_b","f3_a", "f3_b", "f4_a", "f4_b", "f5_a", "f5_b", "f6_a", "f6_b", "f7_a", "f7_b", "f8_a", "f8_b"};
+int onboard_led = 4;
+// const char* db_location[16] = {"f1_a", "f1_b", "f2_a", "f2_b","f3_a", "f3_b", "f4_a", "f4_b", "f5_a", "f5_b", "f6_a", "f6_b", "f7_a", "f7_b", "f8_a", "f8_b"};
 
 
 //the total number of flap values we are reading
@@ -69,6 +68,7 @@ void setup(){
   for(int i = 0; i < num_regs; i++){
     pinMode(flaps[i], OUTPUT);
   }
+  pinMode(onboard_led, OUTPUT);
 
    Serial.begin(115200);
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
@@ -120,46 +120,37 @@ void setup(){
 
 void loop() {
 
-//digitalWrite(13, HIGH);
-
-
-   if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 100 || sendDataPrevMillis == 0)) {
+  
+   if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 250 || sendDataPrevMillis == 0)) {
     sendDataPrevMillis = millis();
 
 
 
+    if (Firebase.RTDB.getInt(&fbdo, "bits")) {
+        digitalWrite(onboard_led, HIGH);
 
-   
-  //  Serial.printf("Get bool ref... %s\n", Firebase.RTDB.getBool(&fbdo, F("f1_a"), &bVal) ? bVal ? "true" : "false" : fbdo.errorReason().c_str());
+      if (fbdo.dataType() == "int") {
+        int intValue = fbdo.intData();
+        char binary[17] = {0};
+        int expanded = intValue + 65536;
+        itoa(expanded,binary,2);
+        char* string = binary + 1;
+        Serial.println(string); //print out our string.
+        for(int i = 0; i < num_regs; i++){
+            digitalWrite(flaps[i], string[i] - '0'); //write to the pin (the - '0' converts the bit of the string to HIGH or LOW)
+        }
+      }
+    }
+    else {
+      digitalWrite(onboard_led, LOW);
 
-    //for(int i = 0; i < num_regs; i++){
-          bool bVal;
-          Serial.printf("Count... %i\n", count);
-
-          Serial.printf("Get bool ref... %s\n", Firebase.RTDB.getBool(&fbdo, F(db_location[count]), &bVal) ? bVal ? "true" : "false" : fbdo.errorReason().c_str());
-
-
-            if(bVal == true){
-              digitalWrite(flaps[count], HIGH);
-            }else{
-              digitalWrite(flaps[count], LOW);
-            }
-   
-     count = (count + 1) % num_regs;
+      Serial.println(fbdo.errorReason());
+    }
 
   }
 
 }
 
-void printValues(){
-
-    for(int i = 0; i < num_regs; i++){
-      Serial.print(input_vals[i]+" ");
-      Serial.println("********");
-    }
-
-
-}
 
 
 

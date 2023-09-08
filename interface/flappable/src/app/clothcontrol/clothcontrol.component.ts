@@ -1,6 +1,10 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { RealtimedatabaseService } from '../realtimedatabase.service';
 
+
+
+
+
 @Component({
   selector: 'app-clothcontrol',
   templateUrl: './clothcontrol.component.html',
@@ -37,6 +41,64 @@ export class ClothcontrolComponent implements OnInit{
   setEMOff(id: number) {
     this.rtdb.deactivate(id);
   }
+
+  @HostListener('mousedown', ['$event'])
+  mouseDown(event: any) {
+    let target: string = (event.target !== null) ? event.target.id : 'null';
+
+    if(target !== 'null'){
+      let flap_id:number = parseInt(target.substring(0,1));
+      let zone = target.substring(1, 2);
+      console.log("FLAP ZONE ", flap_id, zone)
+      let id = (zone == 'a') ? (flap_id-1)*2 : (flap_id-1)*2+1;
+      this.rtdb.activate(id);
+
+    }
+  }
+
+  @HostListener('touchstart', ['$event'])
+  touchStart(event: any) {
+    let target: string = (event.target !== null) ? event.target.id : 'null';
+
+    if(target !== 'null'){
+      let flap_id:number = parseInt(target.substring(0,1));
+      let zone = target.substring(1, 2);
+      console.log("FLAP ZONE ", flap_id, zone)
+      let id = (zone == 'a') ? (flap_id-1)*2 : (flap_id-1)*2+1;
+      this.rtdb.activate(id);
+
+    }
+  }
+
+  @HostListener('mouseup', ['$event'])
+  mouseUp(event: any) {
+    let target: string = (event.target !== null) ? event.target.id : 'null';
+
+    if(target !== 'null'){
+      let flap_id:number = parseInt(target.substring(0,1));
+      let zone = target.substring(1, 2);
+      console.log("FLAP ZONE ", flap_id, zone)
+      let id = (zone == 'a') ? (flap_id-1)*2 : (flap_id-1)*2+1;
+      this.rtdb.deactivate(id);
+
+    }
+  }
+
+  @HostListener('touchend', ['$event'])
+  touchEnd(event: any) {
+    let target: string = (event.target !== null) ? event.target.id : 'null';
+
+    if(target !== 'null'){
+      let flap_id:number = parseInt(target.substring(0,1));
+      let zone = target.substring(1, 2);
+      console.log("FLAP ZONE ", flap_id, zone)
+      let id = (zone == 'a') ? (flap_id-1)*2 : (flap_id-1)*2+1;
+      this.rtdb.deactivate(id);
+
+    }
+  }
+
+
 
   @HostListener('window:keydown.a', ['$event'])
     onAClick() {

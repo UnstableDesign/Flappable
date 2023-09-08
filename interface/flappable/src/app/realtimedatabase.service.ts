@@ -1,8 +1,57 @@
 import { Injectable } from '@angular/core';
 import { getAuth,signInWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, set, onValue } from "firebase/database";
 import {firebaseConfig, login} from "../environments/environment"
+import { Subject } from 'rxjs';
+
+
+
+
+let start: number = 0;
+let previousTimeStamp: number = 0;
+let timeout_threshold: any = 10000; //10 Seconds
+let start_flag:boolean = false;
+let done:boolean = false;
+const hit_timeout$ = new Subject<any>();
+
+
+function startCount(){
+  start_flag = true;
+}
+
+/**
+ * this is used to track the time since the last user interaction, turning the system off
+ * @param timeStamp 
+ */
+function step(timeStamp:number) {
+
+  if (start === undefined || start_flag) {
+    start = timeStamp;
+    start_flag = false;
+  }
+  const elapsed = timeStamp - start;
+  if (previousTimeStamp !== timeStamp) {
+    // Math.min() is used here to make sure the element stops at exactly 200px   
+  }
+
+  if (elapsed < timeout_threshold) {
+    done = false;
+    // Stop the animation after 2 seconds
+
+  }else{
+    if(!done){
+      console.log("TIMEOUT");
+      hit_timeout$.next('timeout');
+    } 
+    done = true;
+  }
+     window.requestAnimationFrame(step);
+
+}
+
+window.requestAnimationFrame(step);
+
 
 
 @Injectable({
@@ -15,6 +64,7 @@ export class RealtimedatabaseService {
 
   public user: any = null;
   private db: any = null;
+
 
   constructor() { 
 
@@ -33,12 +83,14 @@ export class RealtimedatabaseService {
     });
 
     this.db = getDatabase();
-    set(ref(this.db, 'f1_a/'), true);
 
     for(let i = 0; i < this.num_inputs; i++){
       this.user_values.push(false);
     }
 
+    hit_timeout$.subscribe((event)=> {
+      this.timeout();
+    })
 
   }
 
@@ -63,12 +115,25 @@ export class RealtimedatabaseService {
     }
     return '';
   }
+  
+
+
+  /**
+   * called if there has been no activity 
+   */
+  timeout(){
+    for(let i = 0; i < 16; i++){
+      this.deactivate(i);
+    }
+  }
 
 
   activate(id: number) {
     this.user_values[id] = true;
     let val = this.convertToInt();
-    set(ref(this.db, 'bits'), val);
+    set(ref(this.db, 'bits'), val).then(success => {
+      startCount();
+    });
   }
 
   deactivate(id: number) {
@@ -78,8 +143,7 @@ export class RealtimedatabaseService {
   }
 
   convertToInt() : number{
-    let reversed = this.user_values.slice().reverse();
-    let x = parseInt(reversed.map(i => (i) ? 1 : 0).join(''), 2);
+    let x = parseInt(this.user_values.map(i => (i) ? 1 : 0).join(''), 2);
     return x;
   }
 
