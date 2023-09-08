@@ -11,10 +11,6 @@
     text-align: center;
     width: 33%;
     color: blue;
-    
-    button{
-        padding: 2px;
- }
 }
 
 .footer{
@@ -37,17 +33,17 @@ a:visited{
     text-align: left;
     color: blue;
 
-    .main{
-        font-size: 2em;
-        padding-bottom: 8px;
-    }
 
-    .sub{
-        font-size: 1em;
-    }
 
 }
+.main{
+    font-size: 2em;
+    padding-bottom: 8px;
+}
 
+.sub{
+    font-size: 1em;
+}
 
 
 .about{

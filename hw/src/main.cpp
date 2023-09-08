@@ -52,8 +52,6 @@ bool signupOK = false;
 //36 is top left
 int flaps[16] = {13, 12, 14, 27, 26, 25, 33, 32, 21, 22, 19, 23, 18, 5, 15, 2};
 int onboard_led = 4;
-// const char* db_location[16] = {"f1_a", "f1_b", "f2_a", "f2_b","f3_a", "f3_b", "f4_a", "f4_b", "f5_a", "f5_b", "f6_a", "f6_b", "f7_a", "f7_b", "f8_a", "f8_b"};
-
 
 //the total number of flap values we are reading
 int num_regs = 16;
@@ -64,6 +62,9 @@ const bool input_vals[16] = {false, false, false, false, false, false, false, fa
 
 
 void setup(){
+
+  digitalWrite(onboard_led, HIGH);
+
 
   for(int i = 0; i < num_regs; i++){
     pinMode(flaps[i], OUTPUT);
@@ -127,7 +128,7 @@ void loop() {
 
 
     if (Firebase.RTDB.getInt(&fbdo, "bits")) {
-        digitalWrite(onboard_led, HIGH);
+        digitalWrite(onboard_led, LOW);
 
       if (fbdo.dataType() == "int") {
         int intValue = fbdo.intData();
@@ -142,7 +143,7 @@ void loop() {
       }
     }
     else {
-      digitalWrite(onboard_led, LOW);
+      digitalWrite(onboard_led, HIGH);
 
       Serial.println(fbdo.errorReason());
     }
