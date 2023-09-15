@@ -25,9 +25,7 @@
 //Provide the RTDB payload printing info and other helper functions.
 #include "addons/RTDBHelper.h"
 
-// Insert your network credentials - must be 2.4 Ghz
-#define WIFI_SSID "UnstableWifi"
-#define WIFI_PASSWORD "fluxusmuxus"
+
 
 //Define Firebase Data object
 FirebaseData fbdo;
