@@ -11,7 +11,7 @@
   Based in the RTDB Basic Example by Firebase-ESP-Client library by mobizt
   https://github.com/mobizt/Firebase-ESP-Client/blob/main/examples/RTDB/Basic/Basic.ino
 */
-
+#include <secrets.h>
 #include <Arduino.h>
 #if defined(ESP32)
   #include <WiFi.h>
@@ -28,15 +28,6 @@
 // Insert your network credentials - must be 2.4 Ghz
 #define WIFI_SSID "UnstableWifi"
 #define WIFI_PASSWORD "fluxusmuxus"
-
-// #define WIFI_SSID "wiremore"
-// #define WIFI_PASSWORD "falovespa"
-
-// Insert Firebase project API Key
-#define API_KEY "AIzaSyBnoUNIicXo_56Omv7o7_YKI7O01oMYwTQ"
-
-// Insert RTDB URLefine the RTDB URL */
-#define DATABASE_URL "https://flappable-rtd-default-rtdb.firebaseio.com" 
 
 //Define Firebase Data object
 FirebaseData fbdo;

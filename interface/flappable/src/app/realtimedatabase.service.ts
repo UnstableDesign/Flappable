@@ -10,7 +10,7 @@ import { Subject } from 'rxjs';
 
 let start: number = 0;
 let previousTimeStamp: number = 0;
-let timeout_threshold: any = 10000; //10 Seconds
+let timeout_threshold: any = 3000; //3 Seconds
 let start_flag:boolean = false;
 let done:boolean = false;
 const hit_timeout$ = new Subject<any>();

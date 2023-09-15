@@ -3,8 +3,6 @@ import { RealtimedatabaseService } from '../realtimedatabase.service';
 
 
 
-
-
 @Component({
   selector: 'app-clothcontrol',
   templateUrl: './clothcontrol.component.html',
@@ -13,6 +11,7 @@ import { RealtimedatabaseService } from '../realtimedatabase.service';
 export class ClothcontrolComponent implements OnInit{
   
 
+  
   constructor(public rtdb: RealtimedatabaseService) { 
 
 
@@ -40,6 +39,13 @@ export class ClothcontrolComponent implements OnInit{
 
   setEMOff(id: number) {
     this.rtdb.deactivate(id);
+  }
+
+  @HostListener('unload', ['event'])
+  unload(event:any){
+    this.allOff();
+    event.returnValue = "\\o/";
+
   }
 
   @HostListener('mousedown', ['$event'])
