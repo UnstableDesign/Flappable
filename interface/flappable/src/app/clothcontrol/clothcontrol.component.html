@@ -1,0 +1,60 @@
+<!-- <h2> Flappable Controller Interface </h2> -->
+<div class="interface">
+
+<div class ="topbar">
+    <div class="title">
+       <div class="main">Magnetic Reverberations</div>
+       <div class="sub">tap the squares to activate the magnet in that location. <br>works best when only one person is controlling at a time.</div> 
+    </div>
+    <div class="buttons">
+
+        <button mat-stroked-button color="#fc5908" (click)="allOn()">All on</button>
+        <button mat-stroked-button color="#fc5908" (click)="allOff()">All off</button>
+        </div>    
+    <div class="about">
+        <button mat-button color="primary"><a href="https://unstable.design/2023-residency-in-review">more info >></a></button>
+    </div>
+</div>
+
+
+
+<div class="cloth">
+    <div class="flap" id="1">
+        <div class="em" [class.active]="rtdb.user_values[0]" id="1a">1a / a</div>
+        <div class="em" [class.active]="rtdb.user_values[1]" id="1b">1b / s</div>
+    </div>
+    <div class="flap" id="2">
+        <div class="em" [class.active]="rtdb.user_values[2]" id="2a">2a / d</div>
+        <div class="em" [class.active]="rtdb.user_values[3]" id="2b">2b / f</div>
+    </div>
+    <div class="flap" id="3">
+        <div class="em" [class.active]="rtdb.user_values[4]" id="3a">3a / g</div>
+        <div class="em" [class.active]="rtdb.user_values[5]" id="3b">3b / h</div>
+    </div>
+    <div class="flap" id="4">
+        <div class="em" [class.active]="rtdb.user_values[6]" id="4a">4a / j</div>
+        <div class="em" [class.active]="rtdb.user_values[7]" id="4b">4b / k</div>
+    </div>
+    <div class="flap" id="5">
+        <div class="em" id="5a" [class.active]="rtdb.user_values[8]">5a / z</div>
+        <div class="em" id="5b" [class.active]="rtdb.user_values[9]">5b / x</div>
+    </div>
+    <div class="flap" id="6">
+        <div class="em" id="6a" [class.active]="rtdb.user_values[10]">6a / c</div>
+        <div class="em" id="6b" [class.active]="rtdb.user_values[11]">6b / v</div>
+    </div>
+    <div class="flap" id="7">
+        <div class="em" id="7a" [class.active]="rtdb.user_values[12]">7a / b</div>
+        <div class="em" id="7b" [class.active]="rtdb.user_values[13]">7b / n</div>
+    </div>
+    <div class="flap" id="8">
+        <div class="em" id="8a" [class.active]="rtdb.user_values[14]">8a / q</div>
+        <div class="em" id="8b" [class.active]="rtdb.user_values[15]">8b / w</div>
+    </div>
+</div>
+
+<div class ="footer">
+        Created by <a href="http://elizabethmeiklejohn.com/" target="_blank">Elizabeth Meiklejohn</a> (concept, weaving), <a href="http://artfordorks.com/" target="_blank">Laura Devendorf</a> (technical integration, interface), and <a href="https://ireneposch.net/"  target="_blank">Irene Posch</a> (concept, technical integration) at the <a href="https://unstable.design/">Unstable Design Lab</a> as part of the <a href="https://unstable.design/announcing-the-2023-experimental-weavers-in-residence/">2023 Experimental Weaving Residency</a>. 
+</div>
+
+</div>

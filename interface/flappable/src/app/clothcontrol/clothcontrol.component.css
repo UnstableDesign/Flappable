@@ -1,0 +1,93 @@
+.interface{
+    display: flex;
+    flex-direction: column;
+    padding: 3vh 3vw;
+}
+
+
+.topbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.buttons{
+    font-family:monospace;
+    text-align: center;
+    color: #fc5908;
+}
+
+.footer{
+    color: #fc5908;
+    flex-grow: 1;
+    flex-shrink: 1;
+
+
+}
+
+a,
+a:link,
+a:active,
+a:visited{
+    color: #fc5908;
+    text-decoration: underline;
+}
+
+.title{
+    text-align: left;
+    color: #fc5908;
+
+
+
+}
+.main{
+    font-size: 2em;
+    padding-bottom: 8px;
+}
+
+.sub{
+    font-size: 1em;
+    padding-bottom: 6px;
+}
+
+
+.about{
+    text-align: right;
+}
+
+
+
+.cloth{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 66vh;
+    padding: 3vh 0;
+}
+
+.flap{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    background-color: #fc5908;   
+
+}
+
+.em{
+    color: transparent;
+    text-align: center;
+    border: thin dashed white;
+    flex-grow: 1;
+
+}
+
+.active{
+    background-color: white;
+    border: thin dashed #fc5908;
+
+}
