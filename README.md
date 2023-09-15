@@ -1,5 +1,5 @@
 # Magnetic Reverberations
-Hardware and software for the Magnetic Reverberations textile project. Created by Elizabeth Meiklejohn (concept, weaving), Laura Devendorf (tech), Irene Posch (concept, tech). The cloth contains 16 individually controllable electromagnets that animate flaps upon its surface. It can be controlled by a web-based controller at [https://flappable-rtd.web.app/](https://flappable-rtd.web.app/)
+Hardware and software for the Magnetic Reverberations textile project. Created by [Elizabeth Meiklejohn](http://elizabethmeiklejohn.com/) (concept, weaving), Laura Devendorf (tech)[](http://artfordorks.com/), and [Irene Posch](https://ireneposch.net/) (concept, tech). The cloth contains 16 individually controllable electromagnets that animate flaps upon its surface. It can be controlled by a web-based controller at [https://flappable-rtd.web.app/](https://flappable-rtd.web.app/)
  
 
 ![A .gif of the fabric animating](/documentation/gif-1-perceptual-40-lossy.gif)
@@ -61,7 +61,7 @@ Give it a minute or so, sometimes it just gets a little confused about what's ha
 
 
 ## Acknowledgements
-This has been a collaborative project led by Elizabeth Meiklejohn, Laura Devendorf and Irene Posch. It was created at the [Unstable Design Lab](https://unstable.design)  at the [https://www.colorado.edu/atlas/](ATLAS Institute) at the University of Colorado Boulder. The project emerged from a program called the "Experimental Weaving Residency", which is supported by the National Science Foundation. 
+This has been a collaborative project led by Elizabeth Meiklejohn, Laura Devendorf and Irene Posch. It was created at the [Unstable Design Lab](https://unstable.design)  at the [ATLAS Institute](https://www.colorado.edu/atlas/]) at the University of Colorado Boulder. The project emerged from a program called the "Experimental Weaving Residency", which is supported by the National Science Foundation. 
 
 ## Exhibition History
 
@@ -70,4 +70,4 @@ This has been a collaborative project led by Elizabeth Meiklejohn, Laura Devendo
 
 
 ## Read More and Demo Video
-Coming Soon
+- [2023 Experimental Weaving Residency Review from the Unstable Design Lab](https://unstable.design/2023-residency-in-review/)
