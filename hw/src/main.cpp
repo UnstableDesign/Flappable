@@ -1,16 +1,3 @@
-/*
-  Flappable - a Modification of A Fabric that Remembers Version 2 Code
-  Controls from https://flappable-rtd.web.app/ populate a real-time database read by an arduino that updates
-  Electromagnets upon a fabric
-  Modified from: Rui Santos
-  Complete project details at our blog.
-    - ESP32: https://RandomNerdTutorials.com/esp32-firebase-realtime-database/
-    - ESP8266: https://RandomNerdTutorials.com/esp8266-nodemcu-firebase-realtime-database/
-  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files.
-  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-  Based in the RTDB Basic Example by Firebase-ESP-Client library by mobizt
-  https://github.com/mobizt/Firebase-ESP-Client/blob/main/examples/RTDB/Basic/Basic.ino
-*/
 #include <secrets.h>
 #include <Arduino.h>
 #if defined(ESP32)
@@ -20,18 +7,8 @@
 #endif
 #include <Firebase_ESP_Client.h>
 
-//Provide the token generation process info.
-#include "addons/TokenHelper.h"
-//Provide the RTDB payload printing info and other helper functions.
-#include "addons/RTDBHelper.h"
 
-
-
-//Define Firebase Data object
-FirebaseData fbdo;
-
-FirebaseAuth auth;
-FirebaseConfig config;
+#include <Arduino.h>
 
 unsigned long sendDataPrevMillis = 0;
 int count = 0;
@@ -46,8 +23,6 @@ int onboard_led = 4;
 int num_regs = 16;
 
 
-const bool input_vals[16] = {false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false};
-
 
 
 void setup(){
@@ -61,83 +36,118 @@ void setup(){
   pinMode(onboard_led, OUTPUT);
 
    Serial.begin(115200);
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-  Serial.print("Connecting to Wi-Fi");
-  Serial.println(WIFI_SSID);
-  Serial.println(WIFI_PASSWORD);
  
-  while (WiFi.status() != WL_CONNECTED){
-    Serial.print(".");
-    delay(300);
-  }
-
-  Serial.println();
-  Serial.print("Connected with IP: ");
-  Serial.println(WiFi.localIP());
-  Serial.println();
-
-  /* Assign the api key (required) */
-  config.api_key = API_KEY;
-
-  /* Assign the RTDB URL (required) */
-  config.database_url = DATABASE_URL;
-
-
-  //set a connection delay here (or put sign up function in loop)
-  delay(5000);
-  Serial.println("attempting first signup");
-  while(!signupOK){
-    Serial.println("trying signup again");
-
-    /* Sign up */
-    if (Firebase.signUp(&config, &auth, "", "")){
-      Serial.println("ok");
-      signupOK = true;
-    }
-    else{
-      Serial.printf("%s\n", config.signer.signupError.message.c_str());
-    }
-    delay(1000);
-  }
-
-  /* Assign the callback function for the long running token generation task */
-  config.token_status_callback = tokenStatusCallback; //see addons/TokenHelper.h
-  
-  Firebase.begin(&config, &auth);
-  Firebase.reconnectWiFi(true);
 
 }
 
 void loop() {
 
+
+  //ALL ON/OFF for 3 SECONDS, 2 Times
+  for(int j = 0; j < 2; j++){
+    for(int i=0; i < num_regs; i++){
+      digitalWrite(flaps[i],HIGH);
+    }
+    delay(3000);
+
+    //ALL OFF FOR 3 SECONDS
+    for(int i=0; i < num_regs; i++){
+      digitalWrite(flaps[i],LOW);
+    }
+    delay(3000);
+  }
+
+  //ALL ON/OFF for 2 SECONDS,  3 Times
+  for(int j = 0; j < 3; j++){
+    for(int i=0; i < num_regs; i++){
+      digitalWrite(flaps[i],HIGH);
+    }
+    delay(2000);
+
+    //ALL OFF FOR 3 SECONDS
+
+    for(int i=0; i < num_regs; i++){
+      digitalWrite(flaps[i],LOW);
+    }
+    delay(2000);
+  }
+
+  //ALL ON/OFF for 1 SECONDS,  4 Times
+  for(int j = 0; j < 4; j++){
+    for(int i=0; i < num_regs; i++){
+      digitalWrite(flaps[i],HIGH);
+    }
+    delay(1000);
+
+    //ALL OFF FOR 3 SECONDS
+
+    for(int i=0; i < num_regs; i++){
+      digitalWrite(flaps[i],LOW);
+    }
+    delay(1000);
+  }
+
+
+
+   
+
+  //ACTIVATING EACH FLAP LEFT TO RIGHT, RIGHT TO LEFT FOR 1 sec each, 3 times
   
-   if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 250 || sendDataPrevMillis == 0)) {
-    sendDataPrevMillis = millis();
+    for(int j = 0; j < 3; j++){
 
+      for(int i=0; i < num_regs; i+=2){
+        digitalWrite(flaps[i],HIGH);
+        if(i+1 < num_regs) (flaps[i+1],HIGH);
 
+        delay(1000);
+        digitalWrite(flaps[i],LOW);
+        if(i+1 < num_regs) digitalWrite(flaps[i+1],LOW);
 
-    if (Firebase.RTDB.getInt(&fbdo, "bits")) {
-        digitalWrite(onboard_led, LOW);
-
-      if (fbdo.dataType() == "int") {
-        int intValue = fbdo.intData();
-        char binary[17] = {0};
-        int expanded = intValue + 65536;
-        itoa(expanded,binary,2);
-        char* string = binary + 1;
-        Serial.println(string); //print out our string.
-        for(int i = 0; i < num_regs; i++){
-            digitalWrite(flaps[i], string[i] - '0'); //write to the pin (the - '0' converts the bit of the string to HIGH or LOW)
-        }
       }
-    }
-    else {
-      digitalWrite(onboard_led, HIGH);
 
-      Serial.println(fbdo.errorReason());
-    }
+        for(int i=num_regs-1; i >= 0; i-=2){
+        digitalWrite(flaps[i],HIGH);
+        if(i+1 >= 0) digitalWrite(flaps[i-1],HIGH);
+        delay(1000);
+        digitalWrite(flaps[i],LOW);
+        if(i+1 >= 0) digitalWrite(flaps[i-1],LOW);
+
+      }
 
   }
+
+  //FLUTTER LEFT HALF, RIGHT HALF 4 TIMES
+  for(int j = 0; j < 4; j++){
+    for(int i=0; i < num_regs; i++){
+      if(i < 8) digitalWrite(flaps[i],HIGH);
+      if( i >= 8) digitalWrite(flaps[i], LOW);
+    }
+    delay(500);
+
+    for(int i=0; i < num_regs; i++){
+      if(i < 8) digitalWrite(flaps[i],LOW);
+      if( i >= 8) digitalWrite(flaps[i], HIGH);
+    }
+    delay(500);
+
+  }
+
+
+  //REMOVE TOP HALFS
+  for(int i=0; i < num_regs; i+=2){
+    digitalWrite(flaps[i],LOW);
+    delay(1000);
+  }
+
+  //ALL OFF 10 SECONDS
+  for(int i=0; i < num_regs; i++){
+    digitalWrite(flaps[i],LOW);
+  }
+
+  
+  delay(10000);
+
+
 
 }
 

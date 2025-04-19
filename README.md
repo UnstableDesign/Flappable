@@ -1,5 +1,5 @@
 # Magnetic Reverberations
-Hardware and software for the Magnetic Reverberations textile project. Created by [Elizabeth Meiklejohn](http://elizabethmeiklejohn.com/) (concept, weaving), Laura Devendorf (tech)[](http://artfordorks.com/), and [Irene Posch](https://ireneposch.net/) (concept, tech). The cloth contains 16 individually controllable electromagnets that animate flaps upon its surface. It can be controlled by a web-based controller at [https://flappable-rtd.web.app/](https://flappable-rtd.web.app/)
+Hardware and software for the Magnetic Reverberations textile project. Created by [Elizabeth Meiklejohn](http://elizabethmeiklejohn.com/) (concept, weaving), [Laura Devendorf]((http://artfordorks.com/)) (tech), and [Irene Posch](https://ireneposch.net/) (concept, tech). The cloth contains 16 individually controllable electromagnets that animate flaps upon its surface. It can be controlled by a web-based controller at [https://flappable-rtd.web.app/](https://flappable-rtd.web.app/)
  
 
 ![A .gif of the fabric animating](/documentation/gif-1-perceptual-40-lossy.gif)
