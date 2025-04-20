@@ -39,7 +39,7 @@ bool signupOK = false;
 
 //pins for the first four flaps
 //36 is top left
-int flaps[16] = {36, 37, 38, 39, 32, 33, 34, 35};
+int flaps[8] = {32, 33, 25, 26, 27, 14, 12, 13};
 int onboard_led = 21;
 
 //the total number of flap values we are reading
