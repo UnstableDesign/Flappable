@@ -52,6 +52,9 @@ const bool input_vals[8] = {false, false, false, false, false, false, false, fal
 
 void setup(){
 
+  WiFi.mode(WIFI_STA);
+ 
+
   digitalWrite(onboard_led, HIGH);
 
 
@@ -67,8 +70,9 @@ void setup(){
   Serial.println(WIFI_PASSWORD);
  
   while (WiFi.status() != WL_CONNECTED){
-    Serial.print(".");
-    delay(300);
+    Serial.print(".wifi");
+    Serial.print(WiFi.status());
+    delay(1000);
   }
 
   Serial.println();
@@ -106,6 +110,8 @@ void setup(){
   Firebase.begin(&config, &auth);
   Firebase.reconnectWiFi(true);
 
+
+
 }
 
 void loop() {
@@ -138,6 +144,7 @@ void loop() {
     }
 
   }
+
 
 }
 
