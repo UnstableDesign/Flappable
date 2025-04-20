@@ -39,14 +39,14 @@ bool signupOK = false;
 
 //pins for the first four flaps
 //36 is top left
-int flaps[16] = {13, 12, 14, 27, 26, 25, 33, 32, 21, 22, 19, 23, 18, 5, 15, 2};
-int onboard_led = 4;
+int flaps[16] = {36, 37, 38, 39, 32, 33, 34, 35};
+int onboard_led = 21;
 
 //the total number of flap values we are reading
-int num_regs = 16;
+int num_regs = 8;
 
 
-const bool input_vals[16] = {false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false};
+const bool input_vals[8] = {false, false, false, false, false, false, false, false};
 
 
 

@@ -68,6 +68,8 @@ a:visited{
     flex-shrink: 1;
     flex-basis: 66vh;
     padding: 3vh 0;
+    max-width: 50%;
+    margin-left: 25%;
 }
 
 .flap{
