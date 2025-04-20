@@ -16,11 +16,11 @@ bool signupOK = false;
 
 //pins for the first four flaps
 //36 is top left
-int flaps[16] = {13, 12, 14, 27, 26, 25, 33, 32, 21, 22, 19, 23, 18, 5, 15, 2};
-int onboard_led = 4;
+int flaps[8] = {32, 33, 25, 26, 27, 14, 12, 13};
+int onboard_led = 21;
 
 //the total number of flap values we are reading
-int num_regs = 16;
+int num_regs = 8;
 
 
 
@@ -97,7 +97,7 @@ void loop() {
 
       for(int i=0; i < num_regs; i+=2){
         digitalWrite(flaps[i],HIGH);
-        if(i+1 < num_regs) (flaps[i+1],HIGH);
+        if(i+1 < num_regs) (flaps[(i+1)],HIGH);
 
         delay(1000);
         digitalWrite(flaps[i],LOW);
@@ -119,14 +119,14 @@ void loop() {
   //FLUTTER LEFT HALF, RIGHT HALF 4 TIMES
   for(int j = 0; j < 4; j++){
     for(int i=0; i < num_regs; i++){
-      if(i < 8) digitalWrite(flaps[i],HIGH);
-      if( i >= 8) digitalWrite(flaps[i], LOW);
+      if(i < 4) digitalWrite(flaps[i],HIGH);
+      if( i >= 4) digitalWrite(flaps[i], LOW);
     }
     delay(500);
 
     for(int i=0; i < num_regs; i++){
-      if(i < 8) digitalWrite(flaps[i],LOW);
-      if( i >= 8) digitalWrite(flaps[i], HIGH);
+      if(i < 4) digitalWrite(flaps[i],LOW);
+      if( i >= 4) digitalWrite(flaps[i], HIGH);
     }
     delay(500);
 
